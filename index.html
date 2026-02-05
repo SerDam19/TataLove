@@ -1,0 +1,108 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Per te ❤️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      height: 90%;
+      background: #ffe5e5;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    .card {
+      width: 90%;
+      max-width: 350px;
+      margin-bottom: 30px;
+      padding: 26px;
+      border-radius: 24px;
+      background: #e9f4ff;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+      text-align: center;
+      font-size: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: transform 0.4s ease, padding 0.4s ease;
+    }
+    .card.grow {
+      transform: scale(1.03);
+      padding: 30px;
+    }
+    .line {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: all 0.7s ease;
+      line-height: 1.4;
+    }
+    .line.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .bold { font-weight: 700; }
+    .finale {
+      font-family: 'Great Vibes', cursive;
+      font-size: 40px;
+      margin-top: 10px;
+    }
+    .heart {
+      display: inline-block;
+      animation: pulse 1.2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card" id="card"></div>
+
+  <script>
+    const frasi = [
+      "<span class='bold'>Sono fiero di te Tata!</span>",
+      "Ancora un altro po' e avrai tutto ciò che meriti…",
+      "Ricorda sempre che io sono qui, per sostenerti e incoraggiarti",
+      "Ti Amo Tanto Amore",
+      "<span class='finale'>Sei Vita <span class='heart'>❤️</span></span>"
+    ];
+
+    const card = document.getElementById("card");
+    let index = 0;
+
+    function aggiungiFrase() {
+      if (index >= frasi.length) return;
+
+      const div = document.createElement("div");
+      div.className = "line";
+      div.innerHTML = frasi[index];
+      card.appendChild(div);
+
+      setTimeout(() => div.classList.add("show"), 50);
+
+      card.classList.add("grow");
+      setTimeout(() => card.classList.remove("grow"), 300);
+
+      index++;
+    }
+
+    aggiungiFrase();
+
+    const interval = setInterval(() => {
+      if (index >= frasi.length) {
+        clearInterval(interval);
+      } else {
+        aggiungiFrase();
+      }
+    }, 2000);
+  </script>
+
+</body>
+</html>
